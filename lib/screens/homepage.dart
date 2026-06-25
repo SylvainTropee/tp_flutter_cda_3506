@@ -25,6 +25,16 @@ class _HomepageState extends State<Homepage> {
 
   int _selectedIndex = 0;
 
+  void submit(Project project) {
+    setState(() {
+      projects.add(project);
+      _selectedIndex = 0;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Le projet ${project.title} a été ajouté !"))
+    );
+  }
+
   void _addProject() {
     setState(() {
       projects.add(
@@ -39,10 +49,10 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: ProjectFAB(onPressed : _addProject),
+      floatingActionButton: _selectedIndex == 0 ? ProjectFAB(onPressed: _addProject) : null,
       appBar: AppBar(
         leading: const Icon(Icons.rocket_launch_rounded),
-        title: const Text("Mes projets"),
+        title: Text(_selectedIndex == 0 ? "Mes projets" : "Contribuer"),
         centerTitle: true,
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -64,13 +74,14 @@ class _HomepageState extends State<Homepage> {
       ),
       body: _selectedIndex == 0
           ? ProjectsPage(projects: projects)
-          : ContributionPage(),
+          : ContributionPage(submit: submit),
     );
   }
 }
 
 class ProjectFAB extends StatelessWidget {
   void Function() onPressed;
+
   ProjectFAB({super.key, required this.onPressed});
 
   @override
