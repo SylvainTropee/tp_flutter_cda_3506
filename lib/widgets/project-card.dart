@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../models/project.dart';
 
 class ProjectCart extends StatelessWidget {
@@ -11,6 +12,9 @@ class ProjectCart extends StatelessWidget {
     return Card(
       margin: EdgeInsets.all(8),
       child: ListTile(
+        onTap: (){
+          context.push("/detail", extra: project);
+        },
         leading: Icon(Icons.work, color: Theme.of(context).primaryColor),
         trailing: Icon(Icons.arrow_forward_ios),
         title: Text(project.title),

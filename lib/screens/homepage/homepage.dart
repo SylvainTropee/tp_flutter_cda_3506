@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tp_flutter_cda_3506/models/project.dart';
-import 'package:tp_flutter_cda_3506/screens/contribution-page.dart';
-import 'package:tp_flutter_cda_3506/screens/projects-page.dart';
-import '../widgets/project-card.dart';
+import 'package:tp_flutter_cda_3506/screens/homepage/contribution-page.dart';
+import 'package:tp_flutter_cda_3506/widgets/project-form.dart';
+import 'package:tp_flutter_cda_3506/screens/homepage/projects-page.dart';
+import '../../widgets/project-card.dart';
 
 class Homepage extends StatefulWidget {
   Homepage({super.key});
